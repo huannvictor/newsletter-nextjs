@@ -1,9 +1,8 @@
 import mysql from 'mysql2/promise';
-import { NextApiRequest } from "next";
 import { NextResponse } from 'next/server';
 
-export async function POST(request: NextApiRequest) {
-  const body = await JSON.parse(request.body)
+export async function POST(request: Request) {
+  const body = await request.json()
 
   try {
     const connection = await mysql.createConnection("mysql://nextjs:nextjs@localhost:3306/newsletter")
@@ -11,6 +10,6 @@ export async function POST(request: NextApiRequest) {
     connection.end()
     return NextResponse.json({ created: true })
   } catch (error) {
-    return NextResponse.json({ created: false, error: error}, { status: 400 })
+    return NextResponse.json({ created: false, error}, { status: 400 })
   }
 }

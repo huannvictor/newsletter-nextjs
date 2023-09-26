@@ -12,10 +12,7 @@ export default function SubscribeForm() {
       method: "POST",
       body: JSON.stringify({ email }),
       headers: { "Content-Type": "application/json" }
-    }).then(res => {
-      console.log(res)
-      res.json()
-    })
+    }).then(res => res.json())
 
     console.log(response)
     if (response.created) {
