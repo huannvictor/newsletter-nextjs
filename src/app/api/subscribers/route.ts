@@ -11,6 +11,6 @@ export async function POST(request: NextApiRequest) {
     connection.end()
     return NextResponse.json({ created: true })
   } catch (error) {
-    return NextResponse.json({ created: false, error: error})
+    return NextResponse.json({ created: false, error: error}, { status: 400 })
   }
 }

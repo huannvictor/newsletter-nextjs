@@ -9,10 +9,13 @@ export default function SubscribeForm() {
     e.preventDefault()
 
     const response = await fetch("/api/subscribers", {
-      method: "post",
+      method: "POST",
       body: JSON.stringify({ email }),
       headers: { "Content-Type": "application/json" }
-    }).then(res => res.json())
+    }).then(res => {
+      console.log(res)
+      res.json()
+    })
 
     console.log(response)
     if (response.created) {
