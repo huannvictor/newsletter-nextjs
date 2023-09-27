@@ -13,3 +13,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ created: false, error}, { status: 400 })
   }
 }
+
+export async function DELETE(request: Request) {
+  const body = await request.json()
+  const id = JSON.stringify(body.id)
+
+  try {
+    const connection = await mysql.createConnection("mysql://nextjs:nextjs@localhost:3306/newsletter")
+    await connection.query("DELETE FROM Subscribers WHERE id = ?", id)
+    connection.end()
+    return NextResponse.json({ deleted: true })
+  } catch (error) {
+    return NextResponse.json({ deleted: false, error}, { status: 400 })
+  }
+}
+

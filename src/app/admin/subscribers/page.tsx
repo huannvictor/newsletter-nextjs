@@ -1,17 +1,22 @@
-import SubscriptionsTable from "@/src/components/subscriptionsTable"
+import DeleteBtn from "@/src/components/deleteBtn"
 import mysql from "mysql2/promise"
 
 export const metadata = {
   title: "Inscritos | Admin"
 }
 
+interface SubscriberProps {
+  id: number
+  email: string
+  createdAt: Date
+  updatedAt: Date
+}
+
 
 export default async function Subscribers() {
   const db = await mysql.createConnection("mysql://nextjs:nextjs@localhost:3306/newsletter")
-  const [ rows ] = await db.query("SELECT * FROM Subscribers;")
+  const [ rows ]: any[] = await db.query("SELECT * FROM Subscribers;")
   db.end()
-
-  console.log(rows)
 
   return  (
     <main>
@@ -22,10 +27,20 @@ export default async function Subscribers() {
             <th>ID</th>
             <th>Email</th>
             <th>Created At</th>
+            <td>Ação</td>
           </tr>
         </thead>
         <tbody>
-          < SubscriptionsTable rows={rows} />
+        {rows.map((subscriber: SubscriberProps) => (
+          <tr key={subscriber.id} className="[&>*]:p-4">
+              <td>{subscriber.id}</td>
+              <td className="text-left">{subscriber.email}</td>
+              <td>{subscriber.createdAt.toDateString()}</td>
+              <td>
+                <DeleteBtn id={subscriber.id}/>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </main>

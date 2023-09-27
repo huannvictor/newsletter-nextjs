@@ -14,7 +14,6 @@ export default function SubscribeForm() {
       headers: { "Content-Type": "application/json" }
     }).then(res => res.json())
 
-    console.log(response)
     if (response.created) {
       setEmail("")
       alert("Email cadastrado com sucesso!")
