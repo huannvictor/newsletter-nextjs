@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Inscritos | Admin"
+}
+
 export default function Layout({
   children,
 }: {

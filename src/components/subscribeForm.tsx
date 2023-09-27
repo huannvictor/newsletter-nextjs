@@ -8,7 +8,7 @@ export default function SubscribeForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const response = await fetch("/api/subscribers", {
+    const response = await fetch("/api/add-subscribers", {
       method: "POST",
       body: JSON.stringify({ email }),
       headers: { "Content-Type": "application/json" }

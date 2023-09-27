@@ -1,23 +1,20 @@
-import DeleteBtn from "@/src/components/deleteBtn"
-import mysql from "mysql2/promise"
+import DeleteBtn from '@/src/components/deleteBtn'
+import { sql } from '@vercel/postgres'
 
-export const metadata = {
-  title: "Inscritos | Admin"
-}
 
 interface SubscriberProps {
   id: number
   email: string
-  createdAt: Date
-  updatedAt: Date
+  created_at: Date
+  updated_at: Date
 }
 
 
 export default async function Subscribers() {
-  const db = await mysql.createConnection("mysql://nextjs:nextjs@localhost:3306/newsletter")
-  const [ rows ]: any[] = await db.query("SELECT * FROM Subscribers;")
-  db.end()
+  const { rows } = await sql`SELECT * FROM Subscribers;`
 
+  console.log(rows)
+  
   return  (
     <main>
       <h1 className="text-2xl font-bold mb-8">Lista de inscritos</h1>
@@ -31,11 +28,11 @@ export default async function Subscribers() {
           </tr>
         </thead>
         <tbody>
-        {rows.map((subscriber: SubscriberProps) => (
+        {rows.map(subscriber => (
           <tr key={subscriber.id} className="[&>*]:p-4">
               <td>{subscriber.id}</td>
               <td className="text-left">{subscriber.email}</td>
-              <td>{subscriber.createdAt.toDateString()}</td>
+              <td>{subscriber.created_at.toDateString()}</td>
               <td>
                 <DeleteBtn id={subscriber.id}/>
               </td>
