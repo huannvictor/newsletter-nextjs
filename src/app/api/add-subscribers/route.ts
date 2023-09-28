@@ -7,7 +7,10 @@ export async function POST(request: Request) {
 
   try {
     if (!email ) throw new Error('email required')
-    await sql`INSERT INTO Subscribers (email) VALUES (${email});`
+    
+    const client = await sql.connect()
+    await client.sql`INSERT INTO Subscribers (email) VALUES (${email});`
+    client.release()
 
     return NextResponse.json({ created: true })
   } catch (error) {

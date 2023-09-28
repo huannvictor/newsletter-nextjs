@@ -1,19 +1,25 @@
 'use client'
 
-export default function DeleteBtn(subscribeId: { id: number }) {
+interface DeleteBtnProps {
+  id: number
+  onDelete: () => void
+}
+
+
+export default function DeleteBtn({id, onDelete}: DeleteBtnProps) {
   async function handleClick() {
-    const {id} = subscribeId
 
-    const response = await fetch("/api/subscribers", {
-      method: "DELETE",
-      body: JSON.stringify({ id }),
-      headers: { "Content-Type": "application/json" }
-    }).then(res => res.json())
+    try {
+      const response = await fetch("/api/delete-subscriber", {
+        method: "DELETE",
+        body: JSON.stringify({ id }),
+        headers: { "Content-Type": "application/json" }
+      })
 
-    if (response.deleted) {
-      alert("Email deletado com sucesso!")
-    } else {
-      alert("Algo deu errado!")
+      if (response) alert("Email deletado com sucesso!")
+      onDelete()
+    } catch (error) {
+      console.error(error)
     }
   }
 

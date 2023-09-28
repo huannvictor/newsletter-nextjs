@@ -6,14 +6,17 @@ import { useEffect, useState } from "react"
 interface SubscriberProps {
   id: number
   email: string
-  created_at: string
-  updated_at: string
+  created_at: Date
+  updated_at: Date
 }
 
 
 export default function Subscribers() {
-  
   const [rows, setRows] = useState<SubscriberProps[]>([])
+  const f = new Intl.DateTimeFormat('pt-br', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  })
 
   const fetchRows = async () => {
     try {
@@ -59,9 +62,12 @@ export default function Subscribers() {
           <tr key={subscriber.id} className="[&>*]:p-4">
               <td>{subscriber.id}</td>
               <td className="text-left">{subscriber.email}</td>
-              <td>{subscriber.created_at}</td>
+              <td>{f.format(new Date(subscriber.created_at))}</td>
               <td>
-                <DeleteBtn id={subscriber.id}/>
+                <DeleteBtn 
+                  id={subscriber.id}
+                  onDelete={fetchRows}
+                />
               </td>
             </tr>
           ))}
