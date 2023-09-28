@@ -1,6 +1,6 @@
-import DeleteBtn from '@/src/components/deleteBtn'
-import { sql } from '@vercel/postgres'
+'use client'
 
+import { createClient } from "@vercel/postgres"
 
 interface SubscriberProps {
   id: number
@@ -10,11 +10,20 @@ interface SubscriberProps {
 }
 
 
-export default async function Subscribers() {
-  const { rows } = await sql`SELECT * FROM Subscribers;`
-
-  console.log(rows)
+export default function Subscribers() {
   
+  async function fetchSubscriptions() {
+
+    const connectionString = `Host=${process.env.POSTGRES_HOST};Port=${5432};Database=${process.env.POSTGRES_DATABASE};User=${process.env.POSTGRES_USER};Password=${process.env.POSTGRES_PASSWORD};`
+    const client = createClient({connectionString})
+
+    const { rows } = await client.sql`SELECT * FROM Subscribers;`
+    return rows
+  }
+
+  const rows = fetchSubscriptions()
+  
+
   return  (
     <main>
       <h1 className="text-2xl font-bold mb-8">Lista de inscritos</h1>
@@ -28,7 +37,7 @@ export default async function Subscribers() {
           </tr>
         </thead>
         <tbody>
-        {rows.map(subscriber => (
+        {/* {rows.map(subscriber => (
           <tr key={subscriber.id} className="[&>*]:p-4">
               <td>{subscriber.id}</td>
               <td className="text-left">{subscriber.email}</td>
@@ -37,7 +46,7 @@ export default async function Subscribers() {
                 <DeleteBtn id={subscriber.id}/>
               </td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
     </main>
