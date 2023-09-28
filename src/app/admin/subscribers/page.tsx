@@ -1,28 +1,46 @@
 'use client'
 
-import { createClient } from "@vercel/postgres"
+import DeleteBtn from "@/src/components/deleteBtn"
+import { useEffect, useState } from "react"
 
 interface SubscriberProps {
   id: number
   email: string
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 
 export default function Subscribers() {
   
-  async function fetchSubscriptions() {
+  const [rows, setRows] = useState<SubscriberProps[]>([])
 
-    const connectionString = `Host=${process.env.POSTGRES_HOST};Port=${5432};Database=${process.env.POSTGRES_DATABASE};User=${process.env.POSTGRES_USER};Password=${process.env.POSTGRES_PASSWORD};`
-    const client = createClient({connectionString})
+  const fetchRows = async () => {
+    try {
+      const response = await fetch("/api/get-subscribers", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      })
+  
+      if (!response.ok) {
+        console.log("Erro na requisição:", response.status)
+        return
+      } 
+      
+      const {subscribers} = await response.json()
 
-    const { rows } = await client.sql`SELECT * FROM Subscribers;`
-    return rows
+      if (subscribers) {
+        setRows(subscribers.rows)
+      }
+      if (!subscribers) console.log('A resposta está vazia.')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  const rows = fetchSubscriptions()
-  
+  useEffect(() => {
+    fetchRows()
+  }, [])
 
   return  (
     <main>
@@ -37,16 +55,16 @@ export default function Subscribers() {
           </tr>
         </thead>
         <tbody>
-        {/* {rows.map(subscriber => (
+        {rows.map(subscriber => (
           <tr key={subscriber.id} className="[&>*]:p-4">
               <td>{subscriber.id}</td>
               <td className="text-left">{subscriber.email}</td>
-              <td>{subscriber.created_at.toDateString()}</td>
+              <td>{subscriber.created_at}</td>
               <td>
                 <DeleteBtn id={subscriber.id}/>
               </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
     </main>
