@@ -1,8 +1,7 @@
 'use client'
 
-import DeleteBtn from "@/src/components/deleteBtn";
-import { useEffect, useState } from "react";
-import { WebSocket } from "ws";
+import DeleteBtn from "@/src/components/deleteBtn"
+import { useEffect, useState } from "react"
 
 interface SubscriberProps {
   id: number
@@ -11,7 +10,6 @@ interface SubscriberProps {
   updated_at: Date
 }
 
-const client = new WebSocket("ws://localhost:8080");
 
 export default function Subscribers() {
   const [rows, setRows] = useState<SubscriberProps[]>([])
@@ -44,22 +42,7 @@ export default function Subscribers() {
   }
 
   useEffect(() => {
-    client.onopen = () => {
-      console.log("Conexão WebSocket aberta");
-    };
-
-    client.onmessage = (message: { data: any; }) => {
-      console.log("Mensagem recebida:", message.data);
-    };
-
-    client.onclose = () => {
-      console.log("Conexão WebSocket fechada");
-    };
-
-    return () => {
-      client.close();
-    };
-
+    fetchRows()
   }, [])
 
   return  (
