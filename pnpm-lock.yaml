@@ -14,6 +14,9 @@ dependencies:
   '@types/react-dom':
     specifier: 18.2.7
     version: 18.2.7
+  '@types/ws':
+    specifier: ^8.5.6
+    version: 8.5.6
   '@vercel/postgres':
     specifier: ^0.5.0
     version: 0.5.0
@@ -47,6 +50,9 @@ dependencies:
   typescript:
     specifier: 5.2.2
     version: 5.2.2
+  ws:
+    specifier: ^8.14.2
+    version: 8.14.2(bufferutil@4.0.7)(utf-8-validate@6.0.3)
 
 packages:
 
@@ -318,6 +324,12 @@ packages:
 
   /@types/scheduler@0.16.4:
     resolution: {integrity: sha512-2L9ifAGl7wmXwP4v3pN4p2FLhD0O1qsJpvKmNin5VA8+UvNVb447UDaAEV6UdrkA+m/Xs58U1RFps44x6TFsVQ==}
+    dev: false
+
+  /@types/ws@8.5.6:
+    resolution: {integrity: sha512-8B5EO9jLVCy+B58PLHvLDuOD8DRVMgQzq8d55SjLCOn9kqGyqOvy27exVaTio1q1nX5zLu8/6N0n2ThSxOM6tg==}
+    dependencies:
+      '@types/node': 20.6.5
     dev: false
 
   /@typescript-eslint/parser@6.7.3(eslint@8.50.0)(typescript@5.2.2):
