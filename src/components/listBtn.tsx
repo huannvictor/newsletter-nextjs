@@ -8,6 +8,7 @@ export default function ListBtn({text}: {text: string}) {
 
   const handleClick = async () => {
     await listSubscriptions()
+    console.log('clicou')
   }
   
   return (
