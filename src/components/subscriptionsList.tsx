@@ -1,8 +1,8 @@
 "use client"
 
 import { QueryResultRow } from "@vercel/postgres";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import DeleteBtn from "./deleteBtn";
+import ListBtn from "./listBtn";
 
 export default function SubscriptionsList({rows}: {rows: QueryResultRow[] | undefined}) {  
   const f = new Intl.DateTimeFormat('pt-br', {
@@ -10,16 +10,11 @@ export default function SubscriptionsList({rows}: {rows: QueryResultRow[] | unde
     timeStyle: 'short',
   })
 
-  const { pending } = useFormStatus()
-
   console.log(rows)
 
   return (
     <>
-    {
-      pending
-      ? <tr>carregando informações...</tr>
-      : rows && rows.map(subscriber => (
+    {rows && rows.map(subscriber => (
         <tr key={subscriber.id} className="[&>*]:p-4">
         <td>{subscriber.id}</td>
         <td className="text-left">{subscriber.email}</td>
@@ -30,8 +25,8 @@ export default function SubscriptionsList({rows}: {rows: QueryResultRow[] | unde
           />
           </td>
         </tr>
-      ))
-    }    
+      ))}
+      <ListBtn text="atualizar dados"/>
     </>
   )
 }

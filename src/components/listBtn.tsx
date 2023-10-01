@@ -8,7 +8,6 @@ export default function ListBtn({text}: {text: string}) {
 
   const handleClick = async () => {
     await listSubscriptions()
-    alert('dados atualizados')
   }
   
   return (
