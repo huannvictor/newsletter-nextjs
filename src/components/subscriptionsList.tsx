@@ -1,13 +1,13 @@
 "use client"
 
 import { QueryResultRow } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { useRef } from "react";
 import DeleteBtn from "./deleteBtn";
 
 
 export default function SubscriptionsList({rows}: {rows: QueryResultRow[]}) {
-  revalidatePath('/admin/subscribers')
+  revalidateTag('tbody')
   
   const ref = useRef<HTMLTableSectionElement>(null)
 
