@@ -16,7 +16,9 @@ export default async function Subscribers() {
             <td>Ação</td>
           </tr>
         </thead>
+        <tbody>
           <SubscriptionsList rows={rows}/>
+        </tbody>
       </table>
     </main>
   )

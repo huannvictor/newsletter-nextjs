@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import Link from 'next/link'
+import ListBtn from '../components/listBtn'
 import './globals.css'
 
 const poppins = Poppins({ weight: ['400', '700'],subsets: ['latin'] })
@@ -24,7 +25,9 @@ export default function RootLayout({
             <nav className="flex gap-10">
               <Link href="/">início</Link>
               <Link href="/about">sobre</Link>
-              <Link href="/admin/subscribers">inscritos</Link>
+              <Link href="/admin/subscribers">
+                <ListBtn text={'inscritos'} />
+              </Link>
             </nav>
           </header>
 
