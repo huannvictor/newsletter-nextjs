@@ -1,14 +1,11 @@
 "use client"
 
 import { QueryResultRow } from "@vercel/postgres";
-import { revalidateTag } from "next/cache";
 import { useRef } from "react";
 import DeleteBtn from "./deleteBtn";
 
 
-export default function SubscriptionsList({rows}: {rows: QueryResultRow[]}) {
-  revalidateTag('tbody')
-  
+export default function SubscriptionsList({rows}: {rows: QueryResultRow[]}) {  
   const ref = useRef<HTMLTableSectionElement>(null)
 
   const f = new Intl.DateTimeFormat('pt-br', {

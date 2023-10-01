@@ -1,7 +1,7 @@
 "use server"
 
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 type ErrorProps = any & {
   detail: string
@@ -40,7 +40,7 @@ export const listSubscriptions = async () => {
   const subscribers = await client.sql`SELECT * FROM Subscribers;`
   client.release()
 
-  revalidatePath('/admin/subscribers')
+  revalidateTag('tbody')
 
   return subscribers.rows
 }
