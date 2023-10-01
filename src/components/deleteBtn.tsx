@@ -17,7 +17,6 @@ export default function DeleteBtn(prop: { id: number}) {
       ref={ref}
       className="bg-rose-500 px-2 py-1 rounded hover:bg-rose-600" 
       onClick={handleClick}
-
     >
       deletar
     </button>
