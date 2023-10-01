@@ -1,32 +1,23 @@
-'use client'
+"use client"
 
-interface DeleteBtnProps {
-  id: number
-  onDelete: () => void
-}
+import { useRef } from "react"
+import { deleteSubscription } from "../app/actions/add-subscription"
 
+export default function DeleteBtn(prop: { id: number}) {
+  const { id } = prop
+  const ref = useRef<HTMLButtonElement>(null)
 
-export default function DeleteBtn({id, onDelete}: DeleteBtnProps) {
-  async function handleClick() {
-
-    try {
-      const response = await fetch("/api/delete-subscriber", {
-        method: "DELETE",
-        body: JSON.stringify({ id }),
-        headers: { "Content-Type": "application/json" }
-      })
-
-      if (response) alert("Email deletado com sucesso!")
-      onDelete()
-    } catch (error) {
-      console.error(error)
-    }
+  const handleClick = async () => {
+    const response = await deleteSubscription(id)
+    alert(response)
   }
-
+  
   return (
     <button 
+      ref={ref}
       className="bg-rose-500 px-2 py-1 rounded hover:bg-rose-600" 
       onClick={handleClick}
+
     >
       deletar
     </button>

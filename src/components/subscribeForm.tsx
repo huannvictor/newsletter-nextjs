@@ -1,31 +1,21 @@
 "use client"
 
-import { useState } from "react"
+import { useRef } from "react"
+import { addSubscription } from "../app/actions/add-subscription"
+import AddButton from "./addBtn"
 
 export default function SubscribeForm() {
-  const [email, setEmail] = useState("")
+  const ref = useRef<HTMLFormElement>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    const response = await fetch("/api/add-subscribers", {
-      method: "POST",
-      body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json" }
-    }).then(res => res.json())
-
-    if (response.created) {
-      setEmail("")
-      alert("Email cadastrado com sucesso!")
-    } else {
-      alert("Algo deu errado!")
-    }
-  }
-
-  return (
+return (
     <form
       className="flex justify-center gap-4 p-4"
-      onSubmit={handleSubmit}
+      ref={ref}
+      action={async formData => {
+        ref.current?.reset()
+        const response  = await addSubscription(formData)
+        alert(response)
+      }}
     >
       <input
         type="email"
@@ -33,12 +23,9 @@ export default function SubscribeForm() {
         id="email"
         placeholder="Seu e-mail principal"
         className="bg-slate-800 p-3 rounded"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        required
       />
-      <button className="bg-sky-700 p-3 rounded">
-        Se inscrever
-      </button>
+      <AddButton />
     </form>
   )
 }

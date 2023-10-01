@@ -1,7 +1,6 @@
-'use client'
 
 import DeleteBtn from "@/src/components/deleteBtn"
-import { useEffect, useState } from "react"
+import { listSubscriptions } from "../../actions/add-subscription"
 
 interface SubscriberProps {
   id: number
@@ -11,39 +10,13 @@ interface SubscriberProps {
 }
 
 
-export default function Subscribers() {
-  const [rows, setRows] = useState<SubscriberProps[]>([])
+export default async function Subscribers() {
+  const {rows} = await listSubscriptions()
+
   const f = new Intl.DateTimeFormat('pt-br', {
     dateStyle: 'medium',
     timeStyle: 'short',
   })
-
-  const fetchRows = async () => {
-    try {
-      const response = await fetch("/api/get-subscribers", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-      })
-  
-      if (!response.ok) {
-        console.log("Erro na requisição:", response.status)
-        return
-      } 
-      
-      const {subscribers} = await response.json()
-
-      if (subscribers) {
-        setRows(subscribers.rows)
-      }
-      if (!subscribers) console.log('A resposta está vazia.')
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchRows()
-  }, [])
 
   return  (
     <main>
@@ -66,7 +39,6 @@ export default function Subscribers() {
               <td>
                 <DeleteBtn 
                   id={subscriber.id}
-                  onDelete={fetchRows}
                 />
               </td>
             </tr>
