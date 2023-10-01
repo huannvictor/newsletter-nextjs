@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { addSubscription } from "../app/actions/add-subscription"
+import { addSubscription } from "../app/actions/subscription"
 import AddButton from "./addBtn"
 
 export default function SubscribeForm() {

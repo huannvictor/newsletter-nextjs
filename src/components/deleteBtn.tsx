@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { deleteSubscription } from "../app/actions/add-subscription"
+import { deleteSubscription } from "../app/actions/subscription"
 
 export default function DeleteBtn(prop: { id: number}) {
   const { id } = prop

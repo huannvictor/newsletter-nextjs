@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { listSubscriptions } from "../app/actions/add-subscription"
+import { listSubscriptions } from "../app/actions/subscription"
 
 export default function ListBtn({text}: {text: string}) {
   const ref = useRef<HTMLButtonElement>(null)

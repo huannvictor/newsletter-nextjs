@@ -8,16 +8,6 @@ type ErrorProps = any & {
   [key: string]: any
 }
 
-type SubscriberProps = {
-  id: number
-  email: string
-  created_at: Date
-  updated_at: Date
-}
-type RowsProps = {
-  rows: SubscriberProps
-}
-
 export const addSubscription = async (formData: FormData) => {
   const email = formData.get("email")
     
@@ -39,7 +29,6 @@ export const listSubscriptions = async () => {
   try {
     const client = await sql.connect()
     const subscribers = await client.sql`SELECT * FROM Subscribers;`
-    client.release()
   
     revalidatePath('/admin/subscribers')
   

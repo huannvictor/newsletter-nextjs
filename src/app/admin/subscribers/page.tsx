@@ -1,5 +1,5 @@
 import SubscriptionsList from "@/src/components/subscriptionsList"
-import { listSubscriptions } from "../../actions/add-subscription"
+import { listSubscriptions } from "../../actions/subscription"
 
 export default async function Subscribers() {
   const rows = await listSubscriptions()
