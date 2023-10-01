@@ -8,7 +8,6 @@ export default function ListBtn({text}: {text: string}) {
 
   const handleClick = () => {
     listSubscriptions()
-    console.log('clicou')
   }
   
   return (

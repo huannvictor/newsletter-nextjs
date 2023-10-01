@@ -12,6 +12,8 @@ export default function SubscriptionsList({rows}: {rows: QueryResultRow[] | unde
 
   const { pending } = useFormStatus()
 
+  console.log(rows)
+
   return (
     <>
     {
