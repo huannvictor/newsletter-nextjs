@@ -8,6 +8,7 @@ export default function ListBtn({text}: {text: string}) {
 
   const handleClick = () => {
     listSubscriptions()
+    alert('dados atualizados')
   }
   
   return (
