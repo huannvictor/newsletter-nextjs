@@ -2,7 +2,6 @@
 
 import { QueryResultRow } from "@vercel/postgres";
 import DeleteBtn from "./deleteBtn";
-import ListBtn from "./listBtn";
 
 export default function SubscriptionsList({rows}: {rows: QueryResultRow[] | undefined}) {  
   const f = new Intl.DateTimeFormat('pt-br', {
@@ -10,10 +9,9 @@ export default function SubscriptionsList({rows}: {rows: QueryResultRow[] | unde
     timeStyle: 'short',
   })
 
-  console.log(rows)
-
   return (
     <>
+    <tbody>
     {rows && rows.map(subscriber => (
         <tr key={subscriber.id} className="[&>*]:p-4">
         <td>{subscriber.id}</td>
@@ -26,7 +24,7 @@ export default function SubscriptionsList({rows}: {rows: QueryResultRow[] | unde
           </td>
         </tr>
       ))}
-      <ListBtn text="atualizar dados"/>
+    </tbody>
     </>
   )
 }
