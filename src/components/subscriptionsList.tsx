@@ -5,7 +5,7 @@ import { useRef } from "react";
 import DeleteBtn from "./deleteBtn";
 
 
-export default function SubscriptionsList({rows}: {rows: QueryResultRow[]}) {  
+export default function SubscriptionsList({rows}: {rows: QueryResultRow[] | undefined}) {  
   const ref = useRef<HTMLTableSectionElement>(null)
 
   const f = new Intl.DateTimeFormat('pt-br', {
@@ -15,7 +15,7 @@ export default function SubscriptionsList({rows}: {rows: QueryResultRow[]}) {
 
   return (
     <tbody ref={ref}>
-    {rows.map(subscriber => (
+    {rows && rows.map(subscriber => (
       <tr key={subscriber.id} className="[&>*]:p-4">
       <td>{subscriber.id}</td>
       <td className="text-left">{subscriber.email}</td>

@@ -1,7 +1,7 @@
 "use server"
 
 import { sql } from "@vercel/postgres";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 type ErrorProps = any & {
   detail: string
@@ -36,13 +36,17 @@ export const addSubscription = async (formData: FormData) => {
 }
 
 export const listSubscriptions = async () => {
-  const client = await sql.connect()
-  const subscribers = await client.sql`SELECT * FROM Subscribers;`
-  client.release()
-
-  revalidateTag('tbody')
-
-  return subscribers.rows
+  try {
+    const client = await sql.connect()
+    const subscribers = await client.sql`SELECT * FROM Subscribers;`
+    client.release()
+  
+    revalidatePath('/admin/subscribers')
+  
+    return subscribers.rows
+  } catch (error) {
+    return
+  }
 }
 
 export const deleteSubscription = async (id: number) => {
