@@ -1,16 +1,20 @@
 "use client"
 
 import { QueryResultRow } from "@vercel/postgres";
+import { useRef } from "react";
 import DeleteBtn from "./deleteBtn";
 
+
 export default function SubscriptionsList({rows}: {rows: QueryResultRow[]}) {
+  const ref = useRef<HTMLTableSectionElement>(null)
+
   const f = new Intl.DateTimeFormat('pt-br', {
     dateStyle: 'medium',
     timeStyle: 'short',
   })
 
   return (
-    <>
+    <tbody ref={ref}>
     {rows.map(subscriber => (
       <tr key={subscriber.id} className="[&>*]:p-4">
       <td>{subscriber.id}</td>
@@ -23,6 +27,6 @@ export default function SubscriptionsList({rows}: {rows: QueryResultRow[]}) {
       </td>
     </tr>
     ))}    
-    </>
+    </tbody>
   )
 }
