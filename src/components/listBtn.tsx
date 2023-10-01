@@ -6,8 +6,8 @@ import { listSubscriptions } from "../app/actions/subscription"
 export default function ListBtn({text}: {text: string}) {
   const ref = useRef<HTMLButtonElement>(null)
 
-  const handleClick = () => {
-    listSubscriptions()
+  const handleClick = async () => {
+    await listSubscriptions()
     alert('dados atualizados')
   }
   
