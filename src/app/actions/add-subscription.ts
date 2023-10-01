@@ -8,6 +8,16 @@ type ErrorProps = any & {
   [key: string]: any
 }
 
+type SubscriberProps = {
+  id: number
+  email: string
+  created_at: Date
+  updated_at: Date
+}
+type RowsProps = {
+  rows: SubscriberProps
+}
+
 export const addSubscription = async (formData: FormData) => {
   const email = formData.get("email")
     
@@ -32,7 +42,7 @@ export const listSubscriptions = async () => {
 
   revalidatePath('/admin/subscribers')
 
-  return subscribers
+  return subscribers.rows
 }
 
 export const deleteSubscription = async (id: number) => {

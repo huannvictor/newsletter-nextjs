@@ -1,22 +1,8 @@
-
-import DeleteBtn from "@/src/components/deleteBtn"
+import SubscriptionsList from "@/src/components/subscriptionsList"
 import { listSubscriptions } from "../../actions/add-subscription"
 
-interface SubscriberProps {
-  id: number
-  email: string
-  created_at: Date
-  updated_at: Date
-}
-
-
 export default async function Subscribers() {
-  const {rows} = await listSubscriptions()
-
-  const f = new Intl.DateTimeFormat('pt-br', {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  })
+  const rows = await listSubscriptions()
 
   return  (
     <main>
@@ -31,18 +17,7 @@ export default async function Subscribers() {
           </tr>
         </thead>
         <tbody>
-        {rows.map(subscriber => (
-          <tr key={subscriber.id} className="[&>*]:p-4">
-              <td>{subscriber.id}</td>
-              <td className="text-left">{subscriber.email}</td>
-              <td>{f.format(new Date(subscriber.created_at))}</td>
-              <td>
-                <DeleteBtn 
-                  id={subscriber.id}
-                />
-              </td>
-            </tr>
-          ))}
+          <SubscriptionsList rows={rows}/>
         </tbody>
       </table>
     </main>
