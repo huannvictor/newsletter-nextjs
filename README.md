@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# INSIGHTS
 
-## Getting Started
+This project was made with a tutorial form OneBitCode. [::link here::](https://youtu.be/d0FtBqd4WkE?si=ctjvWk_iKb-qErej)
+
+In this course I learned how to create a simple newsletter that receives email subscriptions, then lists them with the option to delete.
+
+## Coding
+
+React.js • Next.js • Typescript • Tailwind
+
+## Deploy
+
+Vercel
+
+---
+
+# See the deploy
+
+[Front-End Insights (newsletter-nextjs-noen8rtcl-huannvictor.vercel.app)](https://newsletter-nextjs-noen8rtcl-huannvictor.vercel.app/)
+
+# Getting Started
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Screenshots
 
-## Learn More
+### homepage
 
-To learn more about Next.js, take a look at the following resources:
+![image.png](https://res.craft.do/user/full/2a94c98e-cd47-d60f-7a1c-d742c8bd4fd9/doc/b7a460dd-0a11-a165-f688-1d8049001047/ea895e51-5f92-4395-afba-9fe8a475ce22)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### subscriptions list
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![image.png](https://res.craft.do/user/full/2a94c98e-cd47-d60f-7a1c-d742c8bd4fd9/doc/b7a460dd-0a11-a165-f688-1d8049001047/95e44b82-6777-423a-abcd-728453f984f6)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+?descriptionFromFileType=function+toLocaleUpperCase()+{+[native+code]+}+File&mimeType=application/octet-stream&fileName=INSIGHTS.md&fileType=undefined&fileExtension=md
