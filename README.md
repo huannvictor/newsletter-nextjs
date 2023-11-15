@@ -39,5 +39,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### subscriptions list
 
 ![image.png](https://res.craft.do/user/full/2a94c98e-cd47-d60f-7a1c-d742c8bd4fd9/doc/b7a460dd-0a11-a165-f688-1d8049001047/95e44b82-6777-423a-abcd-728453f984f6)
-
-?descriptionFromFileType=function+toLocaleUpperCase()+{+[native+code]+}+File&mimeType=application/octet-stream&fileName=INSIGHTS.md&fileType=undefined&fileExtension=md
