@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import Link from 'next/link'
-import ListBtn from '../components/listBtn'
 import './globals.css'
 
-const poppins = Poppins({ weight: ['400', '700'],subsets: ['latin'] })
+const poppins = Poppins({ weight: ['400', '700'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Front-End Insights',
@@ -16,7 +15,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return ( 
+  return (
     <html lang="pt-BR">
       <body className={poppins.className}>
         <div className="flex min-h-screen flex-col items-center justify-between max-w-5xl mx-auto">
@@ -25,9 +24,7 @@ export default function RootLayout({
             <nav className="flex gap-10">
               <Link href="/">início</Link>
               <Link href="/about">sobre</Link>
-              <Link href="/admin/subscribers">
-                <ListBtn text={'inscritos'} />
-              </Link>
+              <Link href="/admin/subscribers">lista de inscritos</Link>
             </nav>
           </header>
 
